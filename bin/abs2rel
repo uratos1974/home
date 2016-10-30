@@ -1,0 +1,36 @@
+#!/bin/bash
+
+if [[ $# -ne 1 ]] || [[ ${1:0:1} != "/" ]]; then
+    echo "usage: $(basename "$0") <absolute path>"
+    exit 1
+fi
+
+CD="$(pwd)"
+TD="$(echo $1 | sed 's|/\+|/|g' | sed 's|^\(.*[^/]\)/$|\1|')"
+
+if [[ $CD == $TD ]]; then
+    echo "."
+    exit 0
+fi
+
+while true; do
+    CD1="$(expr "$CD" : '\(/[^/]*\)')"
+    TD1="$(expr "$TD" : '\(/[^/]*\)')"
+    if [[ $CD1 == $TD1 ]]; then
+        CD="$(expr "$CD" : '/[^/]*\(/.*\)')"
+        TD="$(expr "$TD" : '/[^/]*\(/.*\)')"
+    else
+        break
+    fi
+done
+
+TD="$(expr "$TD" : '/\(.*\)')"
+
+while [[ -n $CD ]] && [[ $CD != "/" ]]; do
+    CD="$(expr "$CD" : '/[^/]*\(/.*\)')"
+    TD="../$TD"
+done
+
+expr "$TD" : '\(.*[^/]\)/*'
+
+exit 0

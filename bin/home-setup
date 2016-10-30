@@ -1,0 +1,21 @@
+#!/bin/bash -ex
+
+cd "$(dirname "$0")/.."
+
+git config --local user.name "SUGIURA Satoshi"
+git config --local user.email "uratos1974@gmail.com"
+git config --local push.default "simple"
+
+git config --global alias.a "add"
+git config --global alias.b "branch"
+git config --global alias.d "diff --color-words"
+git config --global alias.i "commit"
+git config --global alias.l "log --graph --date='format:%F %T' --pretty='format:%C(auto)%h [%cd] <%cn> %s %d'"
+git config --global alias.o "checkout"
+git config --global alias.s "status"
+
+git submodule update --init --recursive
+
+if which fc-cache &> /dev/null; then
+    fc-cache -r
+fi

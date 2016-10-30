@@ -1,0 +1,46 @@
+#!/bin/bash
+
+EMACSES=( \
+    /Applications/Emacs.app/Contents/MacOS/Emacs \
+    /usr/local/bin/emacs \
+    /usr/bin/emacs \
+)
+
+EMACSCLIENTS=( \
+    /usr/local/bin/emacsclient \
+    /usr/bin/emacsclient \
+)
+
+for EMACS in "${EMACSES[@]}"; do
+    [[ -x $EMACS ]] && break
+    EMACS=""
+done
+
+for EMACSCLIENT in "${EMACSCLIENTS[@]}"; do
+    [[ -x $EMACSCLIENT ]] && break
+    EMACSCLIENT=""
+done
+
+USE_EMACSCLIENT=yes
+
+if [[ $# -eq 0 ]]; then
+    USE_EMACSCLIENT=no
+else
+    for ARG in "$@"; do
+        if [[ ${ARG:0:1} == - ]]; then
+            USE_EMACSCLIENT=no
+            break
+        fi
+    done
+fi
+
+export XMODIFIERS="@im=none"
+
+if [[ -z $EMACS ]]; then
+    echo "Emacs is not found"
+    exit 1
+elif [[ $USE_EMACSCLIENT == yes ]] && [[ -n $EMACSCLIENT ]]; then
+    exec "$EMACSCLIENT" -s "$HOME/.emacs.d/server" -a "$EMACS" "$@" &> /dev/null
+else
+    exec "$EMACS" "$@"
+fi
