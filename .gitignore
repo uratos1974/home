@@ -1,0 +1,8 @@
+/.*
+/*
+
+!/.emacs.d/
+!/.gitignore
+!/.zsh.d/
+!/.zshrc
+!/bin/
