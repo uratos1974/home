@@ -1,0 +1,10 @@
+### -*- mode: shell-script; coding: utf-8-unix; -*-
+###
+### Startup file for Z shell on Mac
+###
+###
+
+alias ls="/bin/ls -G -F"
+#alias ls="/usr/local/bin/gls --color=auto -F"
+
+### End of File
