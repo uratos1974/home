@@ -3,6 +3,7 @@
 
 !/.emacs.d/
 !/.gitignore
+!/.vimrc
 !/.zsh.d/
 !/.zshrc
 !/bin/
