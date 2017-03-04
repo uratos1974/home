@@ -12,6 +12,12 @@
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'meta)
 
+;; '¥' を '\' として扱う
+(bind-key [?\¥] [?\\])
+(bind-key [?\C-¥] [?\C-\\])
+(bind-key [?\M-¥] [?\M-\\])
+(bind-key [?\C-\M-¥] [?\C-\M-\\])
+
 ;; ミニバッファ入力時に日本語入力を OFF にする
 (mac-auto-ascii-mode 1)
 
