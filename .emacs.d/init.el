@@ -57,6 +57,10 @@
 (keyboard-translate ?\C-h ?\C-?)
 (bind-key "C-j" 'reindent-then-newline-and-indent)
 
+;; よく使う機能を集約するためのキーマップ
+(define-prefix-command 'my/menu-root-map)
+(bind-key "C-;" 'my/menu-root-map)
+
 
 ;;; 雑多な設定 ---------------------------------------------------------
 
