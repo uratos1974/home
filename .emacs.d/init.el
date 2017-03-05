@@ -104,7 +104,7 @@
 
 ;; タブ
 (setq-default tab-width 8)
-(setq-default indent-tabs-mode nil)
+(setq-default indent-tabs-mode t)
 
 ;; いろいろ
 (setq warning-minimum-level :error)
@@ -217,6 +217,18 @@
   (my/add-hook 'markdown-mode-hook
     (auto-fill-mode 1)
     (setq my/inhibit-delete-trailing-whitespace t)))
+
+
+;;; c-mode -------------------------------------------------------------
+
+(my/add-hook 'c-mode-hook
+  (c-set-style "linux")
+  (setq c-basic-offset 4)
+  (setq tab-width 4)
+  (setq indent-tabs-mode nil)
+  (c-toggle-auto-hungry-state 1)
+  (make-local-variable 'c-tab-always-indent)
+  (setq c-tab-always-indent nil))
 
 
 ;;; 他の設定ファイルを読み込む -----------------------------------------
