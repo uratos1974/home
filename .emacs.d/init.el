@@ -149,13 +149,20 @@
 (use-package helm-files
   :defer 3
   :bind (:map helm-find-files-map
-         ("<tab>"   . helm-execute-persistent-action)
-         ("<S-tab>" . helm-find-files-up-one-level)))
+	      ("<tab>"   . helm-execute-persistent-action)
+	      ("<S-tab>" . helm-find-files-up-one-level)))
 
 (use-package helm-buffers :defer 3)
 (use-package helm-command :defer 3)
 (use-package helm-ring    :defer 3)
 (use-package helm-elisp   :defer 3)
+
+
+;;; Magit - Git インタフェース -----------------------------------------
+
+(use-package magit
+  :ensure t
+  :bind (:map my/menu-root-map ("g" . magit-status)))
 
 
 ;;; migemo - ローマ字で日本語検索 --------------------------------------
