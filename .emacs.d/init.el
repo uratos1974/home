@@ -158,6 +158,19 @@
 (use-package helm-elisp   :defer 3)
 
 
+;;; helm-gtags - helm で GNU GLOBAL を使う -----------------------------
+
+(use-package helm-gtags
+  :ensure t
+  :bind (:map my/menu-gtags-map
+	      ("f" . helm-gtags-find-pattern)
+	      ("j" . helm-gtags-dwim)
+	      ("p" . helm-gtags-pop-stack))
+  :init
+  (define-prefix-command 'my/menu-gtags-map)
+  (bind-key "j" 'my/menu-gtags-map my/menu-root-map))
+
+
 ;;; Magit - Git インタフェース -----------------------------------------
 
 (use-package magit
@@ -239,7 +252,8 @@
   (setq indent-tabs-mode nil)
   (c-toggle-auto-hungry-state 1)
   (make-local-variable 'c-tab-always-indent)
-  (setq c-tab-always-indent nil))
+  (setq c-tab-always-indent nil)
+  (helm-gtags-mode 1))
 
 
 ;;; 他の設定ファイルを読み込む -----------------------------------------
