@@ -149,8 +149,8 @@
 (use-package helm-files
   :defer 3
   :bind (:map helm-find-files-map
-	      ("<tab>"   . helm-execute-persistent-action)
-	      ("<S-tab>" . helm-find-files-up-one-level)))
+              ("<tab>"   . helm-execute-persistent-action)
+              ("<S-tab>" . helm-find-files-up-one-level)))
 
 (use-package helm-buffers :defer 3)
 (use-package helm-command :defer 3)
@@ -163,9 +163,9 @@
 (use-package helm-gtags
   :ensure t
   :bind (:map my/menu-gtags-map
-	      ("f" . helm-gtags-find-pattern)
-	      ("j" . helm-gtags-dwim)
-	      ("p" . helm-gtags-pop-stack))
+              ("f" . helm-gtags-find-pattern)
+              ("j" . helm-gtags-dwim)
+              ("p" . helm-gtags-pop-stack))
   :init
   (define-prefix-command 'my/menu-gtags-map)
   (bind-key "j" 'my/menu-gtags-map my/menu-root-map))
@@ -228,9 +228,24 @@
 (my/add-hook 'before-save-hook (my/delete-trailing-whitespace))
 
 
-;;; text-mode ----------------------------------------------------------
+;;; c-mode -------------------------------------------------------------
 
-(my/add-hook 'text-mode-hook (auto-fill-mode 1))
+(my/add-hook 'c-mode-hook
+  (c-set-style "linux")
+  (setq c-basic-offset 4)
+  (setq tab-width 4)
+  (setq indent-tabs-mode nil)
+  (c-toggle-auto-hungry-state 1)
+  (make-local-variable 'c-tab-always-indent)
+  (setq c-tab-always-indent nil)
+  (helm-gtags-mode 1))
+
+
+;;; emacs-lisp-mode ----------------------------------------------------
+
+(my/add-hook 'emacs-lisp-mode-hook
+  (setq tab-width 4)
+  (setq indent-tabs-mode nil))
 
 
 ;;; markdown-mode ------------------------------------------------------
@@ -243,17 +258,9 @@
     (setq my/inhibit-delete-trailing-whitespace t)))
 
 
-;;; c-mode -------------------------------------------------------------
+;;; text-mode ----------------------------------------------------------
 
-(my/add-hook 'c-mode-hook
-  (c-set-style "linux")
-  (setq c-basic-offset 4)
-  (setq tab-width 4)
-  (setq indent-tabs-mode nil)
-  (c-toggle-auto-hungry-state 1)
-  (make-local-variable 'c-tab-always-indent)
-  (setq c-tab-always-indent nil)
-  (helm-gtags-mode 1))
+(my/add-hook 'text-mode-hook (auto-fill-mode 1))
 
 
 ;;; 他の設定ファイルを読み込む -----------------------------------------
