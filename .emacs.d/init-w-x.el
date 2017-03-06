@@ -5,13 +5,19 @@
 ;;;
 
 
-(require 'anthy)
-(global-set-key (kbd "s-SPC") 'toggle-input-method)
-(define-key anthy-preedit-keymap (kbd "<escape>") (kbd "C-g"))
-(setq anthy-preedit-begin-mark "")
-(setq anthy-preedit-delim-mark "")
-(setq anthy-accept-timeout 1)
-(setq default-frame-alist '((top . 0) (left . -1) (width . 120) (height . 40) (font . "Ricty-14")))
+;; Mozc の設定
+(use-package mozc
+  :ensure t
+  :config
+  (setq default-input-method "japanese-mozc"))
+
+;; フレームの設定
+(setq default-frame-alist
+      '((width . 120)
+        (height . 40)
+        (left . 0)
+        (top . 0)
+        (font . "Ricty-12")))
 
 
 ;;; End of File
