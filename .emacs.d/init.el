@@ -228,24 +228,10 @@
 (my/add-hook 'before-save-hook (my/delete-trailing-whitespace))
 
 
-;;; c-mode -------------------------------------------------------------
+;;; text-mode ----------------------------------------------------------
 
-(my/add-hook 'c-mode-hook
-  (c-set-style "linux")
-  (setq c-basic-offset 4)
-  (setq tab-width 4)
-  (setq indent-tabs-mode nil)
-  (c-toggle-auto-hungry-state 1)
-  (make-local-variable 'c-tab-always-indent)
-  (setq c-tab-always-indent nil)
-  (helm-gtags-mode 1))
-
-
-;;; emacs-lisp-mode ----------------------------------------------------
-
-(my/add-hook 'emacs-lisp-mode-hook
-  (setq tab-width 4)
-  (setq indent-tabs-mode nil))
+(my/add-hook 'text-mode-hook
+  (auto-fill-mode 1))
 
 
 ;;; markdown-mode ------------------------------------------------------
@@ -254,13 +240,25 @@
   :ensure t
   :config
   (my/add-hook 'markdown-mode-hook
-    (auto-fill-mode 1)
     (setq my/inhibit-delete-trailing-whitespace t)))
 
 
-;;; text-mode ----------------------------------------------------------
+;;; prog-mode ----------------------------------------------------------
 
-(my/add-hook 'text-mode-hook (auto-fill-mode 1))
+(my/add-hook 'prog-mode-hook
+  (setq tab-width 4)
+  (setq indent-tabs-mode nil))
+
+
+;;; c-mode -------------------------------------------------------------
+
+(my/add-hook 'c-mode-hook
+  (c-set-style "linux")
+  (setq c-basic-offset 4)
+  (c-toggle-auto-hungry-state 1)
+  (make-local-variable 'c-tab-always-indent)
+  (setq c-tab-always-indent nil)
+  (helm-gtags-mode 1))
 
 
 ;;; 他の設定ファイルを読み込む -----------------------------------------
