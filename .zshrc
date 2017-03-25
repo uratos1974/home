@@ -46,6 +46,7 @@ PROMPT=$'\n%B[%b $vcs_info_msg_0_%F{blue}%~%f %B]%b\n%F{yellow}%B%#%b%f '
 
 autoload -U compinit
 compinit -d $ZSHDIR/compdump
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 autoload history-search-end
