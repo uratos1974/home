@@ -61,6 +61,11 @@
 (define-prefix-command 'my/menu-root-map)
 (bind-key "C-;" 'my/menu-root-map)
 
+;; ジャンプ系の機能を集約するためのキーマップ
+(define-prefix-command 'my/menu-jump-map)
+(bind-key "j" 'my/menu-jump-map my/menu-root-map)
+(bind-key "l" 'goto-line my/menu-jump-map)
+
 
 ;;; 雑多な設定 ---------------------------------------------------------
 
@@ -162,13 +167,10 @@
 
 (use-package helm-gtags
   :ensure t
-  :bind (:map my/menu-gtags-map
+  :bind (:map my/menu-jump-map
               ("f" . helm-gtags-find-pattern)
               ("j" . helm-gtags-dwim)
-              ("p" . helm-gtags-pop-stack))
-  :init
-  (define-prefix-command 'my/menu-gtags-map)
-  (bind-key "j" 'my/menu-gtags-map my/menu-root-map))
+              ("p" . helm-gtags-pop-stack)))
 
 
 ;;; Magit - Git インタフェース -----------------------------------------
@@ -195,7 +197,7 @@
 
 (use-package multiple-cursors
   :ensure t
-  :bind (("C-x SPC" . set-rectangular-region-anchor)))
+  :bind (("M-SPC" . set-rectangular-region-anchor)))
 
 
 ;;; popwin - 特定のバッファをポップアップ表示にする --------------------
@@ -211,6 +213,7 @@
 
 (use-package undo-tree
   :ensure t
+  :bind (("M-/" . undo-tree-redo))
   :config
   (global-undo-tree-mode))
 
