@@ -209,6 +209,16 @@
   (popwin-mode 1))
 
 
+;;; projectile - プロジェクト管理 --------------------------------------
+
+(use-package projectile
+  :ensure t
+  :config
+  (bind-key "p" 'projectile-command-map my/menu-root-map)
+  (setq projectile-completion-system 'helm)
+  (projectile-mode))
+
+
 ;;; undo-tree - undo を強化 --------------------------------------------
 
 (use-package undo-tree
