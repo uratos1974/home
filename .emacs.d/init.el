@@ -145,6 +145,7 @@
 
 (use-package helm-config
   :ensure helm
+  :demand
   :bind (("C-x C-f" . helm-find-files)
          ("C-x b"   . helm-buffers-list)
          ("M-x"     . helm-M-x)
@@ -152,15 +153,11 @@
          ("<f1> a"  . helm-apropos)))
 
 (use-package helm-files
-  :defer 3
+  :ensure helm
+  :demand
   :bind (:map helm-find-files-map
               ("<tab>"   . helm-execute-persistent-action)
               ("<S-tab>" . helm-find-files-up-one-level)))
-
-(use-package helm-buffers :defer 3)
-(use-package helm-command :defer 3)
-(use-package helm-ring    :defer 3)
-(use-package helm-elisp   :defer 3)
 
 
 ;;; helm-gtags - helm で GNU GLOBAL を使う -----------------------------
