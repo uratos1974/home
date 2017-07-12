@@ -197,7 +197,7 @@
 
 (use-package multiple-cursors
   :ensure t
-  :bind (("M-SPC" . set-rectangular-region-anchor)))
+  :bind (("C-x C-SPC" . set-rectangular-region-anchor)))
 
 
 ;;; popwin - 特定のバッファをポップアップ表示にする --------------------
@@ -213,7 +213,6 @@
 
 (use-package undo-tree
   :ensure t
-  :bind (("M-/" . undo-tree-redo))
   :config
   (global-undo-tree-mode))
 
